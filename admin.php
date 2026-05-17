@@ -149,8 +149,8 @@ $totalStats = getTotalStats($pdo);
         <div class="stats-card">
             <h3>📊 Общая статистика</h3>
             <p>Всего пользователей: <span class="number"><?= $totalStats['total'] ?></span></p>
-            <p>👨 Мужчин: <?= $totalStats['men'] ?></p>
-            <p>👩 Женщин: <?= $totalStats['women'] ?></p>
+            <p>Мужчин: <?= $totalStats['men'] ?></p>
+            <p>Женщин: <?= $totalStats['women'] ?></p>
         </div>
         
         <div class="stats-card">
@@ -160,7 +160,7 @@ $totalStats = getTotalStats($pdo);
                     <?php foreach ($languageStats as $lang): ?>
                         <li>
                             <span><?= htmlspecialchars($lang['name']) ?></span>
-                            <span class="lang-count">👥 <?= $lang['count'] ?> чел.</span>
+                            <span class="lang-count"><?= $lang['count'] ?> чел.</span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
