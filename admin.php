@@ -130,8 +130,10 @@ $totalStats = getTotalStats($pdo);
 <body>
 <div class="container">
     <div class="header">
-        <h1>🔐 Панель администратора</h1>
-        <div>👋 Здравствуйте, <?= htmlspecialchars($_SERVER['PHP_AUTH_USER']) ?></div>
+        <div class="header__container container">
+            <h1>Панель администратора</h1>
+            <div>Здравствуйте, <?= htmlspecialchars($_SERVER['PHP_AUTH_USER']) ?></div>
+        </div>
     </div>
     
     <?php if ($message): ?>
