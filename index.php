@@ -119,14 +119,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('save', '', 100000);
         setcookie('login_temp', '', 100000);
         setcookie('pass_temp', '', 100000);
-        $messages[] = '<div class="success-message">✅ Данные успешно сохранены!</div>';
+        $messages[] = '<div class="success-message">Данные успешно сохранены!</div>';
         
         if (!empty($_COOKIE['login_temp']) && !empty($_COOKIE['pass_temp'])) {
             $messages[] = sprintf(
-                '<div class="info-message">🔐 Ваши данные для входа:<br>
-                📌 Логин: <strong>%s</strong><br>
-                🔑 Пароль: <strong>%s</strong><br>
-                <a href="login.php">Нажмите здесь</a> чтобы войти и изменить данные.</div>',
+                '<div class="login_data">
+                    <h3>Ваши данные для входа:</h3>
+                    <div class="login_data__login">Логин: %s</div>
+                    <div class="login_data__password">Пароль: %s</div>
+                    <a href="login.php">Нажмите здесь</a> чтобы войти и изменить данные.
+                </div>',
                 htmlspecialchars($_COOKIE['login_temp']),
                 htmlspecialchars($_COOKIE['pass_temp'])
             );
@@ -138,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     foreach ($fields as $field) {
         $errors[$field] = !empty($_COOKIE[$field . '_error']);
         if ($errors[$field] && !empty($_COOKIE[$field . '_error_msg'])) {
-            $messages[] = '<div class="error-message">❌ Ошибка в поле "' . getFieldName($field) . '": ' . htmlspecialchars($_COOKIE[$field . '_error_msg']) . '</div>';
+            $messages[] = '<div class="error-message">Ошибка в поле "' . getFieldName($field) . '": ' . htmlspecialchars($_COOKIE[$field . '_error_msg']) . '</div>';
             setcookie($field . '_error', '', 100000);
             setcookie($field . '_error_msg', '', 100000);
         }
