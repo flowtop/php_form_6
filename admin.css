@@ -26,10 +26,10 @@ h2 {
 
 .header {
     width: 100%;
-    border-bottom: 1px solid #ebebeb;
     color: #292929;
-
+    border-bottom: 1px solid #ebebeb;
     padding: 2rem 0;
+    margin-bottom: 1rem;
 }
 
 .header h1 {
