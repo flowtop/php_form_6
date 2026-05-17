@@ -76,7 +76,7 @@ $pdo->exec("
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM admin_users WHERE login = 'admin'");
 $stmt->execute();
 if ($stmt->fetchColumn() == 0) {
-    $pdo->prepare("INSERT INTO admin_users (login, password_hash) VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi')")->execute();
+    $pdo->prepare("INSERT INTO admin_users (login, password_hash) VALUES ('admin', '$2y$10$IYrzZTsg9loGRuWWuU6Jbe7UrXIrCaJ20d9Q3UGb1hUI5/22UUMlW')")->execute();
 }
 
 // HTTP-авторизация
