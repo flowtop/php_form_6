@@ -27,7 +27,6 @@ h2 {
 .header {
     width: 100%;
     color: #292929;
-    border-bottom: 1px solid #ebebeb;
     padding: 2rem 0;
     margin-bottom: 1rem;
 }
@@ -50,7 +49,7 @@ h2 {
     background: white;
     border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 .stats-card h3 {
