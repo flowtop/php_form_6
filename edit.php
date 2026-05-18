@@ -218,46 +218,96 @@ if (!isset($application['languages_array'])) {
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <title>Редактирование анкеты #<?= $id ?></title>
+    <title>Редактирование анкеты #
+        <?= $id ?>
+    </title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Inter", sans-serif;
             padding: 40px 20px;
         }
-        .container { max-width: 800px; margin: 0 auto; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .card {
             background: white;
             border-radius: 24px;
             padding: 32px;
-            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
         }
+
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 24px;
-            border-radius: 20px;
-            margin-bottom: 24px;
+            color: black;
+            padding: 1.4rem 0;
+            margin-bottom: 2rem;
             text-align: center;
         }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .required::after { content: " *"; color: #ef4444; }
-        input, select, textarea {
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .required::after {
+            content: " *";
+            color: #ef4444;
+        }
+
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e5e7eb;
             border-radius: 12px;
             font-size: 15px;
         }
-        select[multiple] { height: 150px; }
-        .radio-group { display: flex; gap: 24px; padding: 8px 0; }
-        .radio-group label { display: flex; align-items: center; gap: 8px; font-weight: normal; }
-        .checkbox-group { display: flex; align-items: center; gap: 12px; }
-        .btn-save, .btn-cancel {
+
+        select[multiple] {
+            height: 150px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 24px;
+            padding: 8px 0;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-save,
+        .btn-cancel {
             padding: 12px 24px;
             border-radius: 40px;
             font-size: 16px;
@@ -265,17 +315,20 @@ if (!isset($application['languages_array'])) {
             cursor: pointer;
             margin-right: 12px;
         }
+
         .btn-save {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #2b70c0;
             color: white;
             border: none;
         }
+
         .btn-cancel {
             background: #e5e7eb;
             color: #1f2937;
             text-decoration: none;
             display: inline-block;
         }
+
         .message {
             background: #dcfce7;
             color: #16a34a;
@@ -283,6 +336,7 @@ if (!isset($application['languages_array'])) {
             border-radius: 12px;
             margin-bottom: 20px;
         }
+
         .error {
             background: #fee2e2;
             color: #dc2626;
@@ -290,82 +344,107 @@ if (!isset($application['languages_array'])) {
             border-radius: 12px;
             margin-bottom: 20px;
         }
-        .small-hint { font-size: 11px; color: #6b7280; margin-top: 4px; }
+
+        .small-hint {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <div class="card">
-        <div class="header">
-            <h1>✏️ Редактирование анкеты #<?= $id ?></h1>
-            <p>Пользователь: <?= htmlspecialchars($application['fio']) ?></p>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="header__container container">
+                    <h1>Редактирование анкеты #
+                        <?= $id ?>
+                    </h1>
+                    <p>Пользователь:
+                        <?= htmlspecialchars($application['fio']) ?>
+                    </p>
+                </div>
+
+            </div>
+
+            <?php if ($message): ?>
+            <div class="message">
+                <?= $message ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($error): ?>
+            <div class="error">
+                <?= $error ?>
+            </div>
+            <?php endif; ?>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label class="required">ФИО</label>
+                    <input type="text" name="fio" value="<?= htmlspecialchars($application['fio']) ?>">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Телефон</label>
+                    <input type="tel" name="phone" value="<?= htmlspecialchars($application['phone']) ?>">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">E-mail</label>
+                    <input type="email" name="email" value="<?= htmlspecialchars($application['email']) ?>">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Дата рождения</label>
+                    <input type="date" name="birth_date" value="<?= $application['birth_date'] ?>">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Пол</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="male" <?=$application['gender']=='male'
+                                ? 'checked' : '' ?>> Мужской</label>
+                        <label><input type="radio" name="gender" value="female" <?=$application['gender']=='female'
+                                ? 'checked' : '' ?>> Женский</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Языки программирования</label>
+                    <select name="languages[]" multiple size="6">
+                        <?php foreach ($allowedLanguages as $lang): ?>
+                        <option value="<?= $lang ?>" <?=in_array($lang, $application['languages_array']) ? 'selected'
+                            : '' ?>>
+                            <?= $lang ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="small-hint">Удерживайте Ctrl для выбора нескольких</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Биография</label>
+                    <textarea name="biography"
+                        rows="5"><?= htmlspecialchars($application['biography'] ?? '') ?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="contract_agreed" value="1" <?=$application['contract_agreed']
+                            ? 'checked' : '' ?>>
+                        <label>Я ознакомлен(а) с условиями контракта</label>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <button type="submit" class="btn-save">Сохранить изменения</button>
+                    <a href="admin.php" class="btn-cancel">← Отмена</a>
+                </div>
+            </form>
         </div>
-        
-        <?php if ($message): ?>
-            <div class="message"><?= $message ?></div>
-        <?php endif; ?>
-        
-        <?php if ($error): ?>
-            <div class="error">❌ <?= $error ?></div>
-        <?php endif; ?>
-        
-        <form method="POST">
-            <div class="form-group">
-                <label class="required">ФИО</label>
-                <input type="text" name="fio" value="<?= htmlspecialchars($application['fio']) ?>">
-            </div>
-            
-            <div class="form-group">
-                <label class="required">Телефон</label>
-                <input type="tel" name="phone" value="<?= htmlspecialchars($application['phone']) ?>">
-            </div>
-            
-            <div class="form-group">
-                <label class="required">E-mail</label>
-                <input type="email" name="email" value="<?= htmlspecialchars($application['email']) ?>">
-            </div>
-            
-            <div class="form-group">
-                <label class="required">Дата рождения</label>
-                <input type="date" name="birth_date" value="<?= $application['birth_date'] ?>">
-            </div>
-            
-            <div class="form-group">
-                <label class="required">Пол</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="gender" value="male" <?= $application['gender'] == 'male' ? 'checked' : '' ?>> Мужской</label>
-                    <label><input type="radio" name="gender" value="female" <?= $application['gender'] == 'female' ? 'checked' : '' ?>> Женский</label>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="required">Языки программирования</label>
-                <select name="languages[]" multiple size="6">
-                    <?php foreach ($allowedLanguages as $lang): ?>
-                        <option value="<?= $lang ?>" <?= in_array($lang, $application['languages_array']) ? 'selected' : '' ?>><?= $lang ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <div class="small-hint">Удерживайте Ctrl для выбора нескольких</div>
-            </div>
-            
-            <div class="form-group">
-                <label>Биография</label>
-                <textarea name="biography" rows="5"><?= htmlspecialchars($application['biography'] ?? '') ?></textarea>
-            </div>
-            
-            <div class="form-group">
-                <div class="checkbox-group">
-                    <input type="checkbox" name="contract_agreed" value="1" <?= $application['contract_agreed'] ? 'checked' : '' ?>>
-                    <label>Я ознакомлен(а) с условиями контракта</label>
-                </div>
-            </div>
-            
-            <div style="margin-top: 24px;">
-                <button type="submit" class="btn-save">💾 Сохранить изменения</button>
-                <a href="admin.php" class="btn-cancel">← Отмена</a>
-            </div>
-        </form>
     </div>
-</div>
 </body>
+
 </html>
